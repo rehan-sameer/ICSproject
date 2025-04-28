@@ -6,3 +6,5 @@
 2. Controllers
 3. Views
 4. Utils
+
+### Ignore the out and .idea folders
