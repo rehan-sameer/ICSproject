@@ -13,7 +13,7 @@ package models;
         this.password = password;
     }
 
-    // Getters and Setters (you can auto-generate them in IntelliJ)
+
     
 }
 }
