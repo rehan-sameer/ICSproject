@@ -7,8 +7,7 @@ public class Reservation {
     private int startTime; // in 24-hour format, e.g. 900 for 9:00 AM
     private int endTime;   // e.g. 1100 for 11:00 AM
 
-    public Reservation(String reservationId, String roomId, String userId,
-                       int startTime, int endTime) {
+    public Reservation(String reservationId, String roomId, String userId, int startTime, int endTime) {
         this.reservationId = reservationId;
         this.roomId = roomId;
         this.userId = userId;
