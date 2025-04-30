@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import utils.userManager;
+import models.User;
 
 public class RegisterView extends Application {
 
@@ -41,25 +41,42 @@ public class RegisterView extends Application {
         gp.add(usernameTF, 1, 2);
         gp.add(passwordLabel, 0, 3);
         gp.add(passwordTF, 1, 3);
-        gp.add(registerBtn, 0, 4, 2, 1); // center button across 2 columns
+        gp.add(registerBtn, 0, 4, 2, 1); // center button across 2
 
+
+
+        //WHAT HAPPENS WHEN YOU CLICK REGISTER--------------
         registerBtn.setOnAction(e -> {
             String fullName = nameTF.getText();
             String username = usernameTF.getText();
             String password = passwordTF.getText();
 
-            // Call UserManager to register the user
-            userManager userManager = new userManager(); // ideally passed/shared, not recreated
-            userManager.registerUser(fullName, username, password);
+            if (fullName.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                Label enterValues = new Label("PLEASE ENTER YOUR CREDENTIALS!!");
+                gp.add(enterValues, 5, 1);
 
-            Label registrationComplete = new Label("Registration Complete!");
-            gp.add(registrationComplete, 5, 5);
+            } else {
+                // Call UserManager to register the user
+                MainApp.users.add(new User(fullName, username, password));
+                Label status = new Label("Registration complete");
+                gp.add(status, 5, 2);
 
+
+                Button userLoginBtn = new Button("User Login");
+                userLoginBtn.setOnAction(e1 -> {
+                    Stage loginStage = new Stage();
+                    userLoginView userLogin = new userLoginView();
+                    userLogin.start(loginStage);
+                });
+                gp.add(userLoginBtn, 5, 3);
+
+            }
 
         });
 
+
         // Set up scene and stage
-        Scene scene = new Scene(gp, 400, 300);
+        Scene scene = new Scene(gp, 600, 300);
         stage.setScene(scene);
         stage.setTitle("User Registration");
         stage.show();

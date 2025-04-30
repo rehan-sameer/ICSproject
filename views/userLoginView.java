@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import models.User;
 
 public class userLoginView extends Application {
 
@@ -34,14 +35,51 @@ public class userLoginView extends Application {
         gp.add(passwordTF, 1, 2);
         gp.add(loginBtn, 2, 3);
 
+//        loginBtn.setOnAction(e -> {
+//            Stage loginStage = new Stage();
+//            UserDashboardView userLogin = new UserDashboardView();
+//            userLogin.start(loginStage);
+//        });
+        Label messageLabel = new Label(""); // starts empty
+        gp.add(messageLabel, 1,4);
+
         loginBtn.setOnAction(e -> {
-            Stage loginStage = new Stage();
-            UserDashboardView userLogin = new UserDashboardView();
-            userLogin.start(loginStage);
+            String inputUsername = usernameTF.getText();
+            String inputPassword = passwordTF.getText();
+
+            boolean valid = false;
+
+            for (User user : MainApp.users) {
+                if (user.getUsername().equals(inputUsername) &&
+                        user.getPassword().equals(inputPassword)) {
+                    valid = true;
+                    break;
+                }
+            }
+
+            if (valid) {
+                messageLabel.setText(""); // clear any previous error
+                // open user dashboard
+                UserDashboardView dashboard = new UserDashboardView();
+                Stage dashboardStage = new Stage();
+                dashboard.start(dashboardStage);
+                stage.close(); // optional: close login window
+            } else {
+                messageLabel.setText("Invalid username or password. \nRegister if new user");
+                Button registerBtn = new Button("Register");
+                registerBtn.setMinWidth(150);
+                registerBtn.setOnAction(e1 -> {
+                    Stage loginStage = new Stage();
+                    RegisterView register = new RegisterView();
+                    register.start(loginStage);
+                });
+                gp.add(registerBtn,1,6);
+
+            }
         });
 
 
-        Scene scene = new Scene(gp, 400, 220);
+        Scene scene = new Scene(gp, 600, 400);
         stage.setScene(scene);
         stage.setTitle("User Login");
         stage.show();
