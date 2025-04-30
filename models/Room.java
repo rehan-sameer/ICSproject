@@ -19,7 +19,7 @@ public class Room {
     }
 
     public void setRoomNo(String RoomNo){
-        this.RoomNo = RoomNo;
+        this.roomNo = RoomNo;
     }
 
     public void setOccupancy(boolean occupancy){
