@@ -1,29 +1,25 @@
 package models;
 
 public class Room {
-    private String roomNo;
-    private boolean occupancy;
+    private String roomNumber;
+    private int capacity;
+    private String location;
 
-    public Room(String roomNo, boolean occupancy ){
-        this.roomNo = roomNo;
-        this.occupancy = occupancy;
+    public Room(String roomNumber, int capacity, String location) {
+        this.roomNumber = roomNumber;
+        this.capacity = capacity;
+        this.location = location;
     }
 
-    public String getRoomNo(){
-        return this.roomNo;
-
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public boolean getOccupancy(){
-        return this.occupancy;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setRoomNo(String RoomNo){
-        this.roomNo = RoomNo;
+    public String getLocation() {
+        return location;
     }
-
-    public void setOccupancy(boolean occupancy){
-        this.occupancy = occupancy;
-    }
-
 }

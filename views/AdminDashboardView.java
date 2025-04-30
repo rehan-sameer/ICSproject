@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import models.User;
 
 public class AdminDashboardView extends Application {
     @Override
@@ -28,6 +29,17 @@ public class AdminDashboardView extends Application {
         gp.add(manageRoomsBtn, 0, 1);
         gp.add(viewRequestsBtn, 0, 2);
         gp.add(logoutBtn, 0, 3);
+
+
+        manageRoomsBtn.setOnAction(e -> {
+
+            Stage managingRooms = new Stage();
+            RoomManagementView manageRoom = new RoomManagementView();
+            manageRoom.start(managingRooms);
+
+        });
+
+
 
         Scene scene = new Scene(gp, 350, 220);
         stage.setScene(scene);

@@ -16,7 +16,7 @@ views: Creates the screens (Login Screen, Dashboard Screen) using JavaFX.
 
 utils: Stores reusable helper code (like saving users and rooms in memory).
 
-MainApp.java: The heart of the application that starts everything.
+views.MainApp.java: The heart of the application that starts everything.
 
 
 
